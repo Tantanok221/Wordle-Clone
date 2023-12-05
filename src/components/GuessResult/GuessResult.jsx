@@ -12,7 +12,7 @@ function GuessResult({ guessResult }) {
         let state = attempt.map(val => val.status);
         // console.log(state);
         let newkey = guessKey.split("-");
-
+        
         return (
           <Guess words={words} key={guessKey} keys={guessKey} newkey={newkey} state={state} />
 

@@ -16,7 +16,7 @@ function GuessInput({ guess, setGuess, guessResult, setGuessResult, answer,setWi
           newResult[iterate].guess = guess
           newResult[iterate].attempt = checkAnswer
           setGuessResult(newResult)
-          nextIterate = iterate + 1
+          let nextIterate = iterate + 1
           
           setIterate(nextIterate)
           

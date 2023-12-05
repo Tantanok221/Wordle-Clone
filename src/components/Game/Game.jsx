@@ -41,6 +41,9 @@ function Game() {
   const [guess, setGuess] = React.useState("");
   const [guessResult, setGuessResult] = React.useState(guessResultObj);
   const [winLose,setWinLose] = React.useState("")
+  console.log(guess)
+  console.log(guessResult)
+  
   return (
     <>
       {<GuessInput
