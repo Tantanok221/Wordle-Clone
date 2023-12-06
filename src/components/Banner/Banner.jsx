@@ -1,13 +1,13 @@
 import React from "react";
 
-function Banner({ winLose,answer,guessResult }) {
+function Banner({ winLose,answer,globalIterate }) {
   if (winLose === "happy") {
     return (
       <div className="happy banner">
         <p>
           <strong>Congratulations!</strong> Got it in
           
-          <strong> 3 guesses</strong>.
+          <strong> {globalIterate+1} guesses</strong>.
         </p>
       </div>
     );

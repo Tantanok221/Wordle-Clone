@@ -14,7 +14,7 @@ function GuessResult({ guessResult }) {
         let newkey = guessKey.split("-");
         
         return (
-          <Guess words={words} key={guessKey} keys={guessKey} newkey={newkey} state={state} />
+          <Guess iterate = {i} words={words} key={guessKey} keys={guessKey} newkey={newkey} state={state} />
 
           // <p class="guess" key={guessKey}>
           //   {words.map((word, i) => {return(<span class="cell" key={newkey[i]} >{word}</span>)})}
