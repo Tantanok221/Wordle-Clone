@@ -1,7 +1,7 @@
 # Wordle-Clone
 
 A simple wordle clone built with React and Vite.
-Live Preview: [Vercel]("https://wordle-clone-mauve.vercel.app/")
+Live Preview: [Vercel](https://wordle-clone-mauve.vercel.app/)
 
 ## Upcoming feature
 - Better UI and Animation
