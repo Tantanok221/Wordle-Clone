@@ -5,6 +5,8 @@ import GuessInput from "../GuessInput";
 import GuessResult from "../GuessResult";
 import Banner from "../Banner";
 import GuessKeyboard from "../GuessKeyboard";
+import { checkGuess } from "../../game-helpers.jsx"
+import ShowGuess from "../ShowGuess"
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
@@ -74,10 +76,12 @@ function Game() {
     ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
     ["Z", "X", "C", "V", "B", "N", "M"],
   ];
-  
+  const [globalIterate, setIterate] = React.useState(0);
   const [guess, setGuess] = React.useState("");
   const [guessResult, setGuessResult] = React.useState(guessResultObj);
   const [winLose, setWinLose] = React.useState("");
+
+
   function typeKeyboard(event) {
     let word = event.key.toUpperCase()
     
@@ -91,6 +95,19 @@ function Game() {
       let newGuess = guess.substring(0, guess.length - 1)
       setGuess(newGuess)
     }
+    if(word === "ENTER" && guess.length === 5){
+      let newGuessResult = [...guessResult]
+      newGuessResult[globalIterate].guess = guess
+      
+      newGuessResult[globalIterate].guess.split("").forEach((letter, i) => {
+        
+        let checkAnswer = checkGuess(letter, answer)
+        
+        newGuessResult[globalIterate].attempt[i].status = checkAnswer[0].status
+      })
+      
+      setIterate(globalIterate + 1);
+    }
   }
   React.useEffect(() => {
     window.addEventListener("keydown",typeKeyboard )
@@ -102,6 +119,7 @@ function Game() {
 
   
   console.log(guessResult);
+  
 
   return (
     <>
@@ -117,7 +135,7 @@ function Game() {
           winLose={winLose}
         />
       } */}
-
+      <ShowGuess className="ShowGuess" guess={guess} globalIterate={globalIterate}/>
       <GuessResult guessResult={guessResult} />
       <GuessKeyboard keyboard={keyboard}/>
       {winLose != "" && <Banner answer={answer} winLose={winLose} />}
