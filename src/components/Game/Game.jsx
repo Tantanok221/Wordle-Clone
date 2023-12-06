@@ -10,6 +10,7 @@ const answer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
 console.info({ answer });
 
+
 function Game() {
   const guessResultObj = [
     {
@@ -68,15 +69,40 @@ function Game() {
       ],
     },
   ];
-
+  const keyboard = [
+    ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
+    ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
+    ["Z", "X", "C", "V", "B", "N", "M"],
+  ];
   
-
   const [guess, setGuess] = React.useState("");
   const [guessResult, setGuessResult] = React.useState(guessResultObj);
   const [winLose, setWinLose] = React.useState("");
-  console.log(guess);
-  console.log(guessResult);
+  function typeKeyboard(event) {
+    let word = event.key.toUpperCase()
+    
+    if(event.code[0] === "K" && guess.length < 5){
+      let newGuess = guess + word
+      
+      setGuess(newGuess)
+      
+      }
+    if(word === "BACKSPACE" && guess.length > 0){
+      let newGuess = guess.substring(0, guess.length - 1)
+      setGuess(newGuess)
+    }
+  }
+  React.useEffect(() => {
+    window.addEventListener("keydown",typeKeyboard )
+    return () => {
+      window.removeEventListener("keydown", typeKeyboard)
+    }
+  }, [guess])
   
+
+  
+  console.log(guessResult);
+
   return (
     <>
       
@@ -93,7 +119,7 @@ function Game() {
       } */}
 
       <GuessResult guessResult={guessResult} />
-      <GuessKeyboard/>
+      <GuessKeyboard keyboard={keyboard}/>
       {winLose != "" && <Banner answer={answer} winLose={winLose} />}
     </>
   );
