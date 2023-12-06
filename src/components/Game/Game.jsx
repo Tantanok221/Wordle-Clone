@@ -9,8 +9,7 @@ import { checkGuess } from "../../game-helpers.jsx"
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
-// To make debugging easier, we'll log the solution in the console.
-console.info({ answer });
+
 
 
 function Game() {
@@ -108,7 +107,7 @@ function Game() {
       let checkAnswer = checkGuess(guess, answer)
       let correctAnswer = 0
       checkAnswer.forEach((value, i) => {
-        console.log(value)
+        
         if(value.status === "correct"){
           correctAnswer++
         }
@@ -158,7 +157,7 @@ function Game() {
 
   // Change keyboard color to individual status
   keyboardState.forEach(( value , i) => {
-    console.log(value)
+    
     let element = document.querySelector("#keyboard"+value.letter)
     element.classList.add(value.status)
   })
