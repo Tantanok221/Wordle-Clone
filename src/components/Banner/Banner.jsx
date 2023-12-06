@@ -7,7 +7,7 @@ function Banner({ winLose,answer,globalIterate }) {
         <p>
           <strong>Congratulations!</strong> Got it in
           
-          <strong> {globalIterate+1} guesses</strong>.
+          <strong> {globalIterate} guesses</strong>.
         </p>
       </div>
     );
